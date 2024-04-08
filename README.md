@@ -36,3 +36,9 @@ npm run dev
 ### To see the demo of project click on the below link( It is deployed on vercel )
 
 [Project Link ](https://affiliate-project.vercel.app/){:target="_blank" rel="noopener"}
+
+### Here is video link of this project
+
+[Video Link ](https://drive.google.com/file/d/1mzgrrmSTcHixkNMr4XkefS2v7gTu_zYj/view?usp=sharing)
+
+
