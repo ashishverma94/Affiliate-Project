@@ -63,6 +63,8 @@ const EditCoursePage: React.FC = () => {
   };
 
   // CONSOLE NEW DATA (OUTPUT)
+  const [messageFlag, setMessageFlag] = useState(false);
+
   const printForm = () => {
     const arr: Array<string> = newStudents.map((val: string) => ({
       name: val,
@@ -76,6 +78,10 @@ const EditCoursePage: React.FC = () => {
     };
 
     console.log(newData);
+    setMessageFlag(true);
+    setTimeout(() => {
+      setMessageFlag(false);
+    }, 4000);
   };
 
   return (
@@ -136,7 +142,6 @@ const EditCoursePage: React.FC = () => {
             </div>
           )}
 
-
           {/* students  */}
           {allStudents && (
             <div className=" p-2 items-center my-2 border-[1px] border-[#c0bbbb] w-full flex flex-wrap gap-2  min-h-[60px] rounded-[4px]">
@@ -175,6 +180,10 @@ const EditCoursePage: React.FC = () => {
             </Button>
           </div>
         </Form>
+      </div>
+
+      <div className="text-[red] font-[500] h-[40px] flex items-center">
+        {messageFlag && <p>See the console</p>}
       </div>
     </div>
   );
