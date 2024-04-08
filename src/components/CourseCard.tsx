@@ -43,7 +43,7 @@ const CourseCard: FC<Course> = ({ course }) => {
               });
             }}
           >
-            click
+            EDIT
           </Button>
         )}
       </div>
