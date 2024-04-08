@@ -10,13 +10,13 @@ Before you begin, ensure you have Node.js and npm installed on your machine.
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone <repository-url>
+    git clone >git clone https://github.com/ashishverma94/Affiliate-Project.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd vite-react-project
+    cd cd Affiliate-Project
     ```
 
 3. Install dependencies:
@@ -31,3 +31,7 @@ To start the development server:
 
 ```bash
 npm run dev
+
+### To see the demo of project click on the below link( It is deployed on vercel )
+
+[Project Link ](https://affiliate-project.vercel.app/)
