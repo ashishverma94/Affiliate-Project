@@ -1,10 +1,38 @@
 import { Autocomplete, Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
-import { Form, useLocation } from "react-router-dom";
+import {  redirect, useFetcher, useLocation } from "react-router-dom";
+import type { ActionFunctionArgs } from "@remix-run/node"; // or cloudflare/deno
+import { json } from "@remix-run/node"; // or cloudflare/deno
+import { Form, useActionData } from "@remix-run/react";
+
+
+// export default function Invoices() {
+//   const data = useActionData<typeof action>();
+//   return (
+//     <Form method="post">
+//       <input type="text" name="visitorsName" />
+//       {data ? data.message : "Waiting..."}
+//     </Form>
+//   );
+// }
+
+export async function action({
+  request,
+}: ActionFunctionArgs) {
+  const body = await request.formData();
+  console.log(body) ;
+  // const name = body.get("visitorsName");
+  // return json({ message: `Hello, ${name}` });
+  return redirect("www.google.com") ;
+}
 
 const EditCoursePage: React.FC = () => {
   const location = useLocation();
   const course = (location.state as any)?.data;
+  // console.log(course) ;
+
+  const fetcher = useFetcher();
+
 
   let names: Array<string> = course?.students?.map((name: any): string => {
     return name.name;
@@ -44,13 +72,13 @@ const EditCoursePage: React.FC = () => {
     }
   };
 
-  // UPDATING NEW DATA
-  const [newCourseName, setNewCourseName] = useState(course?.courseName);
-  const [newStudents, setNewStudents] = useState(course?.students);
-  const [newTags, setNewTags] = useState(course?.tags);
-  const [newInstructorName, setNewInstructorName] = useState(
-    course?.instructorName
-  );
+  // // UPDATING NEW DATA
+  // const [newCourseName, setNewCourseName] = useState(course?.courseName);
+  // const [newStudents, setNewStudents] = useState(course?.students);
+  // const [newTags, setNewTags] = useState(course?.tags);
+  // const [newInstructorName, setNewInstructorName] = useState(
+  //   course?.instructorName
+  // );
 
   const handleTagsInput = (e: React.SyntheticEvent, value: string[]) => {
     e.preventDefault();
@@ -65,24 +93,30 @@ const EditCoursePage: React.FC = () => {
   // CONSOLE NEW DATA (OUTPUT)
   const [messageFlag, setMessageFlag] = useState(false);
 
-  const printForm = () => {
-    const arr: Array<string> = newStudents.map((val: string) => ({
-      name: val,
-    }));
-    const newData = {
-      courseId: course?.courseId,
-      instructorName: newInstructorName,
-      courseName: newCourseName,
-      tags: newTags,
-      students: arr,
-    };
+  const printForm1 = () => {
+    // const arr: Array<string> = newStudents.map((val: string) => ({
+    //   name: val,
+    // }));
+    // const newData = {
+    //   courseId: course?.courseId,
+    //   instructorName: newInstructorName,
+    //   courseName: newCourseName,
+    //   tags: newTags,
+    //   students: arr,
+    // };
 
-    console.log(newData);
-    setMessageFlag(true);
-    setTimeout(() => {
-      setMessageFlag(false);
-    }, 4000);
+    // console.log(newData);
+    // setMessageFlag(true);
+    // setTimeout(() => {
+    //   setMessageFlag(false);
+    // }, 4000);
+    // console.log(fetcher) ;
+
+   
+    console.log("fetcher:", fetcher);
   };
+
+  
 
   return (
     <div className=" h-[90vh] bg-[#e6e1e1] w-full flex  flex-col items-center justify-center">
@@ -90,21 +124,24 @@ const EditCoursePage: React.FC = () => {
         <h1 className="font-[600] md:font-[700] pb-4 text-[27px] md:text-[35px] ">
           Edit Course Details
         </h1>
+
         <Form
           className=" flex items-center flex-col justify-center"
-          onSubmit={printForm}
-          action="/edit-course"
+          // onSubmit={printForm}
+          method="post"
+          // action="/print"
+          // name="myName"
         >
           <div className="w-full my-2">
             <TextField
-              onChange={(e) => setNewCourseName(e.target.value)}
               className="w-full mt-4 "
               id="outlined-helperText"
               label="Name"
+              name="myName"
               defaultValue={course?.courseName}
             />
           </div>
-          <div className="w-full my-2">
+          {/* <div className="w-full my-2">
             <TextField
               onChange={(e) => setNewInstructorName(e.target.value)}
               className="w-full p-5"
@@ -112,10 +149,10 @@ const EditCoursePage: React.FC = () => {
               label="Instructor"
               defaultValue={course?.instructorName}
             />
-          </div>
+          </div> */}
 
           {/* tags  */}
-          {allTags && (
+          {/* {allTags && (
             <div className=" p-2 items-center my-2 border-[1px] border-[#c0bbbb] w-full flex flex-wrap gap-2  min-h-[60px] rounded-[4px]">
               <Stack className="w-full" spacing={3}>
                 <Autocomplete
@@ -140,10 +177,10 @@ const EditCoursePage: React.FC = () => {
                 />
               </Stack>
             </div>
-          )}
+          )} */}
 
           {/* students  */}
-          {allStudents && (
+          {/* {allStudents && (
             <div className=" p-2 items-center my-2 border-[1px] border-[#c0bbbb] w-full flex flex-wrap gap-2  min-h-[60px] rounded-[4px]">
               <Stack className="w-full" spacing={3}>
                 <Autocomplete
@@ -168,16 +205,16 @@ const EditCoursePage: React.FC = () => {
                 />
               </Stack>
             </div>
-          )}
+          )} */}
 
           <div className="w-full">
-            <Button
+            <button
               type="submit"
               style={{ backgroundColor: "orange" }}
-              variant="contained"
+              // variant="contained"
             >
               EDIT COURSE
-            </Button>
+            </button>
           </div>
         </Form>
       </div>
