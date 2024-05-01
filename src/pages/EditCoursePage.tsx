@@ -1,9 +1,9 @@
-import { Autocomplete, Button, Stack, TextField } from "@mui/material";
-import { useState } from "react";
-import {  redirect, useFetcher, useLocation } from "react-router-dom";
+import {  TextField } from "@mui/material";
+// import { useState } from "react";
+import {  redirect } from "react-router-dom";
 import type { ActionFunctionArgs } from "@remix-run/node"; // or cloudflare/deno
-import { json } from "@remix-run/node"; // or cloudflare/deno
-import { Form, useActionData } from "@remix-run/react";
+// import { json } from "@remix-run/node"; // or cloudflare/deno
+import { Form } from "@remix-run/react";
 
 
 // export default function Invoices() {
@@ -27,50 +27,50 @@ export async function action({
 }
 
 const EditCoursePage: React.FC = () => {
-  const location = useLocation();
-  const course = (location.state as any)?.data;
+  // const location = useLocation();
+  // const course = (location.state as any)?.data;
   // console.log(course) ;
 
-  const fetcher = useFetcher();
+  // const fetcher = useFetcher();
 
 
-  let names: Array<string> = course?.students?.map((name: any): string => {
-    return name.name;
-  });
+  // let names: Array<string> = course?.students?.map((name: any): string => {
+  //   return name.name;
+  // });
 
-  const [allTags, setAllTags] = useState(course?.tags);
-  const [allStudents, setAllStudents] = useState(names && names);
-  const [flagNamesApi, setFlagNamesApi] = useState(false);
-  const [flagTagsApi, setFlagTagsApi] = useState(false);
+  // const [allTags, setAllTags] = useState(course?.tags);
+  // const [allStudents, setAllStudents] = useState(names && names);
+  // const [flagNamesApi, setFlagNamesApi] = useState(false);
+  // const [flagTagsApi, setFlagTagsApi] = useState(false);
 
   // CALLING /tags
-  const callTagsApi = async () => {
-    if (flagTagsApi === false) {
-      const tagsData = await fetch(
-        "https://raw.githubusercontent.com/thedevelopers-co-in/dummy-api/main/tags.json"
-      );
-      const tagsResult = await tagsData.json();
-      setAllTags(tagsResult.tags);
-      setFlagTagsApi(true);
-    }
-  };
+  // const callTagsApi = async () => {
+  //   if (flagTagsApi === false) {
+  //     const tagsData = await fetch(
+  //       "https://raw.githubusercontent.com/thedevelopers-co-in/dummy-api/main/tags.json"
+  //     );
+  //     const tagsResult = await tagsData.json();
+  //     setAllTags(tagsResult.tags);
+  //     setFlagTagsApi(true);
+  //   }
+  // };
 
   // CALLING /students
-  const callNamesApi = async () => {
-    if (flagNamesApi === false) {
-      const namesData = await fetch(
-        "https://raw.githubusercontent.com/thedevelopers-co-in/dummy-api/main/students.json"
-      );
-      const namesResult = await namesData.json();
-      const newNames: Array<string> = namesResult.enrolledList.map(
-        (name: any) => {
-          return name?.name;
-        }
-      );
-      setAllStudents(newNames);
-      setFlagNamesApi(true);
-    }
-  };
+  // const callNamesApi = async () => {
+  //   if (flagNamesApi === false) {
+  //     const namesData = await fetch(
+  //       "https://raw.githubusercontent.com/thedevelopers-co-in/dummy-api/main/students.json"
+  //     );
+  //     const namesResult = await namesData.json();
+  //     const newNames: Array<string> = namesResult.enrolledList.map(
+  //       (name: any) => {
+  //         return name?.name;
+  //       }
+  //     );
+  //     setAllStudents(newNames);
+  //     setFlagNamesApi(true);
+  //   }
+  // };
 
   // // UPDATING NEW DATA
   // const [newCourseName, setNewCourseName] = useState(course?.courseName);
@@ -80,41 +80,41 @@ const EditCoursePage: React.FC = () => {
   //   course?.instructorName
   // );
 
-  const handleTagsInput = (e: React.SyntheticEvent, value: string[]) => {
-    e.preventDefault();
-    setNewTags(value);
-  };
+  // const handleTagsInput = (e: React.SyntheticEvent, value: string[]) => {
+  //   e.preventDefault();
+  //   setNewTags(value);
+  // };
 
-  const handleStudentsInput = (e: React.SyntheticEvent, value: string[]) => {
-    e.preventDefault();
-    setNewStudents(value);
-  };
+  // const handleStudentsInput = (e: React.SyntheticEvent, value: string[]) => {
+  //   e.preventDefault();
+  //   setNewStudents(value);
+  // };
 
   // CONSOLE NEW DATA (OUTPUT)
-  const [messageFlag, setMessageFlag] = useState(false);
+  // const [messageFlag, setMessageFlag] = useState(false);
 
-  const printForm1 = () => {
-    // const arr: Array<string> = newStudents.map((val: string) => ({
-    //   name: val,
-    // }));
-    // const newData = {
-    //   courseId: course?.courseId,
-    //   instructorName: newInstructorName,
-    //   courseName: newCourseName,
-    //   tags: newTags,
-    //   students: arr,
-    // };
+  // const printForm1 = () => {
+  //   // const arr: Array<string> = newStudents.map((val: string) => ({
+  //   //   name: val,
+  //   // }));
+  //   // const newData = {
+  //   //   courseId: course?.courseId,
+  //   //   instructorName: newInstructorName,
+  //   //   courseName: newCourseName,
+  //   //   tags: newTags,
+  //   //   students: arr,
+  //   // };
 
-    // console.log(newData);
-    // setMessageFlag(true);
-    // setTimeout(() => {
-    //   setMessageFlag(false);
-    // }, 4000);
-    // console.log(fetcher) ;
+  //   // console.log(newData);
+  //   // setMessageFlag(true);
+  //   // setTimeout(() => {
+  //   //   setMessageFlag(false);
+  //   // }, 4000);
+  //   // console.log(fetcher) ;
 
    
-    console.log("fetcher:", fetcher);
-  };
+  //   console.log("fetcher:", fetcher);
+  // };
 
   
 
@@ -138,7 +138,7 @@ const EditCoursePage: React.FC = () => {
               id="outlined-helperText"
               label="Name"
               name="myName"
-              defaultValue={course?.courseName}
+              // defaultValue={course?.courseName}
             />
           </div>
           {/* <div className="w-full my-2">
@@ -220,7 +220,7 @@ const EditCoursePage: React.FC = () => {
       </div>
 
       <div className="text-[red] font-[500] h-[40px] flex items-center">
-        {messageFlag && <p>See the console</p>}
+        {/* {messageFlag && <p>See the console</p>} */}
       </div>
     </div>
   );

@@ -6,7 +6,6 @@ const RootElement : FC = () => {
     <div>
       <div className="bg-[orange] flex items-center justify-center p-6 h-[80px]">
         <div className=" flex items-center w-full h-[50px]">
-          <div></div>
           <div className="">
             <Link to={"/"}>
               <div className=" w-[120px] py-2 px-3 rounded-md font-[500] text-[12px] bg-[#b5afaf] ">
